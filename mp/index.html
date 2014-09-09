@@ -19,11 +19,15 @@
         body { background: #f8f7f5; color: #222; font-family: Helvetica, STHeiti STXihei, Microsoft JhengHei, Microsoft YaHei, Tohoma, Arial; height: 100%; position: relative; }
         #spnContent { line-height: 1.8em; margin: 5px 15px; }
         #spnTitle { font-size: 24px; line-height: 150%; text-align: left; padding: 40px 15px 20px 15px; background-color: #4A65B9; color: #fff; }
+        #spnTitle .time{ font-size: 11px;line-height: 14px;}
     </style>
 </head>
 <body>
     <div class="main">
-        <div id="spnTitle">开学第一课学习通知</div>
+        <div id="spnTitle">
+            <div class="time">2014/9/2 19:09:29</div>
+            <div class="txt">开学第一课学习通知</div>
+        </div>
         <div id="spnContent"> 
             <p>各位家长：</p>
             <p>请认真带着孩子学习开学第一课《父母教会我》，并通过习信反馈给我</p>
@@ -38,7 +42,8 @@
         $.getJSON("/SchoolOa/Notice/GetNotice?_" + Math.random(), { "noticeId": noticeId }, function (data) {
             if (data != ""){
                 $("#spnTitle").html(data.NoticeTitle);
-                $("#spnContent").html(data.NoticeContent);
+                $("#spnContent>.time").html(data.CreateDate);
+                $("#spnContent>.txt").html(data.NoticeContent);
             }
         });
     });
